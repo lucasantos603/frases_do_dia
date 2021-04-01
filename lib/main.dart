@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +16,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  var _frases = [
+    "A arte de ser ora audacioso, ora prudente, é a arte de vencer",
+    "Nossos fracassos, às vezes, são mais frutíferos do que os êxitos",
+    "Comemore os seus sucessos. Veja com humor os seus fracassos",
+    "Não somos responsáveis apenas pelo que fazemos, mas também pelo que deixamos de fazer",
+    "É costume de um tolo, quando erra, queixar-se dos outros. É costume de um sábio queixar-se de si mesmo"
+  ];
+
+  var _frasesGerada = "Clique Abaixo para gerar um frase";
+
+  void _gerarFrase (){
+    var numero = Random().nextInt(_frases.length);
+
+    setState(() {
+      _frasesGerada = _frases [numero];
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +54,7 @@ class _HomeState extends State<Home> {
               children: [
                 Image.asset("images/logo.png"),
                 Text(
-                    "Clique Abaixo para gerar um frase",
+                    _frasesGerada,
                     textAlign: TextAlign.justify,
                     style: TextStyle(
                         fontSize: 17,
@@ -52,7 +72,7 @@ class _HomeState extends State<Home> {
                             fontWeight: FontWeight.bold
                         )),
                     color: Colors.green,
-                    onPressed: (){}
+                    onPressed: _gerarFrase,
                 )
               ],
             ),
